@@ -95,6 +95,4 @@ place of an odds ratio isn't going to be.
 
 ## Use of generative AI
 
-Statistical code in this repository was developed with assistance from
-Claude (Anthropic). See the manuscript's Materials and Methods and
-Acknowledgments sections for the full disclosure.
+Generative AI (Claude, Anthropic) was used to assist with portions of the code development and repository documentation. All outputs were critically reviewed, verified, and, where necessary, modified by the author, who takes full responsibility for the repository and its contents
