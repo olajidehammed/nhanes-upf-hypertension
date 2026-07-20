@@ -13,23 +13,9 @@ sensitivity check for BMI as a potential mediator. Sociodemographic factors
 pressure control than diet in this sample.
 
 ## What's here
-
-```
-src/
-  clean_data.py           load NHANES files, fix a SAS/pandas reading bug
-  nova_classification.py  map WWEIA food categories to Nova processing groups
-  build_sample.py         eligibility criteria, corrected BP outcome, covariates
-  impute.py                multiple imputation of missing covariates
-  survey_stats.py          weighted logistic regression + Taylor-linearized variance
-  run_models.py             ties it together, reproduces the manuscript's models
-```
+All files sit in the repo root (not in a subfolder) - run everything from there.
 
 ## Setup
-
-```
-pip install -r requirements.txt
-```
-
 No `statsmodels` dependency - the environment this was developed in didn't
 have internet access to install it, so the survey-weighted regression and
 variance estimation in `survey_stats.py` are implemented directly with numpy/
@@ -54,11 +40,6 @@ folder.
 `https://www.ars.usda.gov/ARSUserFiles/80400530/apps/`
 
 Then:
-
-```
-python src/run_models.py --data-dir data/
-```
-
 ## Notes on a couple of non-obvious things in here
 
 **The SAS sentinel bug.** `pandas.read_sas()` misreads certain NHANES values
