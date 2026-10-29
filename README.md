@@ -1,5 +1,13 @@
 ## Updated validation status (29 October 2026)
 
+The corrected analysis has now been cross-checked in R using `survey::svyglm()` and `mitools::MIcombine()` on the same 20 completed datasets. All 85 coefficient rows matched one-to-one against the Python model tables, with very small numerical differences. A second 20-imputation sensitivity analysis factor-coded the survey strata and used the same 10 burn-in / 5-update schedule as the primary workflow; the focal estimates were essentially unchanged. See [the validation report](validation/2026-10-29/INDEPENDENT_R_VALIDATION.md), [key R-Python estimates](validation/2026-10-29/r_python_key_exposure_comparison.csv), and [factor-coded stratum sensitivity](validation/2026-10-29/factor_coded_strata_imputation_sensitivity.csv).
+
+**Important remaining limitations:** the current UPF exposure uses a manual broad WWEIA-category-level NOVA approximation. The standardized NHANES NOVA files have not yet been requested/received. The imputation sensitivity is targeted rather than fully design-aware, and formal MICE convergence diagnostics were not completed. The current repository source is not yet fully synchronized with the corrected local analysis. The NCI request email draft is in [docs/NCI_NOVA_data_request_email.md](docs/NCI_NOVA_data_request_email.md).
+
+---
+
+## Updated validation status (29 October 2026)
+
 The corrected analysis has now been cross-checked in R using `survey::svyglm()` and `mitools::MIcombine()` on the same 20 completed datasets. All 85 coefficient rows matched one-to-one against the saved Python model tables, with very small numerical differences. Main UPF associations remain non-significant; the sex interaction remains exploratory. See [the validation report](validation/2026-10-29/INDEPENDENT_R_VALIDATION.md) and [key R-Python estimates](validation/2026-10-29/r_python_key_exposure_comparison.csv).
 
 **Important remaining limitations:** the current UPF exposure still uses a manual broad WWEIA-category-level NOVA approximation. The standardized NHANES NOVA files have not yet been requested/received. A factor-coded imputation sensitivity run was similar but used shortened update spacing and is preliminary. The current repository source therefore should not be represented as fully synchronized with a submission-ready analysis until these items are settled. The NCI request email draft is in [docs/NCI_NOVA_data_request_email.md](docs/NCI_NOVA_data_request_email.md).
