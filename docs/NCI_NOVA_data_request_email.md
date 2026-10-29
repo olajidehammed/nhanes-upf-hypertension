@@ -1,5 +1,9 @@
-To: ncidccpsbrpadvances@mail.nih.gov
-Subject: Request for proposal form: standardized NHANES NOVA classification files (2015–2018)
+# Copy of email sent: request standardized NHANES NOVA data
+
+**Status:** The author reports that this request was sent on 29 October 2026. The response/proposal form is pending; no standardized NOVA files have been received as of this update.
+
+**To:** ncidccpsbrpadvances@mail.nih.gov  
+**Subject:** Request for proposal form: standardized NHANES NOVA classification files (2015–2018)
 
 Dear Risk Factor Assessment Branch team,
 
@@ -13,8 +17,8 @@ The data would be used for this one manuscript only. I would also appreciate any
 
 Thank you for your time and guidance.
 
-Best regards,
-Hammed Abolade Olajide
-Department of Human Nutrition and Dietetics
-University of Ibadan, Nigeria
+Best regards,  
+Hammed Abolade Olajide  
+Department of Human Nutrition and Dietetics  
+University of Ibadan, Nigeria  
 olajidehammed74@gmail.com
