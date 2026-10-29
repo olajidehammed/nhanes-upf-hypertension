@@ -1,3 +1,11 @@
+## Updated validation status (29 October 2026)
+
+The corrected analysis has now been cross-checked in R using `survey::svyglm()` and `mitools::MIcombine()` on the same 20 completed datasets. All 85 coefficient rows matched one-to-one against the saved Python model tables, with very small numerical differences. Main UPF associations remain non-significant; the sex interaction remains exploratory. See [the validation report](validation/2026-10-29/INDEPENDENT_R_VALIDATION.md) and [key R-Python estimates](validation/2026-10-29/r_python_key_exposure_comparison.csv).
+
+**Important remaining limitations:** the current UPF exposure still uses a manual broad WWEIA-category-level NOVA approximation. The standardized NHANES NOVA files have not yet been requested/received. A factor-coded imputation sensitivity run was similar but used shortened update spacing and is preliminary. The current repository source therefore should not be represented as fully synchronized with a submission-ready analysis until these items are settled. The NCI request email draft is in [docs/NCI_NOVA_data_request_email.md](docs/NCI_NOVA_data_request_email.md).
+
+---
+
 # Ultra-processed food intake and blood pressure control (NHANES 2015-2018)
 
 Analysis code for a cross-sectional study of ultra-processed food (UPF) intake
