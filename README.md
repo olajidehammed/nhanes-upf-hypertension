@@ -1,16 +1,14 @@
-## Updated validation status (29 October 2026)
+## Current validation status — 30 October 2026
 
-The corrected analysis has now been cross-checked in R using `survey::svyglm()` and `mitools::MIcombine()` on the same 20 completed datasets. All 85 coefficient rows matched one-to-one against the Python model tables, with very small numerical differences. A second 20-imputation sensitivity analysis factor-coded the survey strata and used the same 10 burn-in / 5-update schedule as the primary workflow; the focal estimates were essentially unchanged. See [the validation report](validation/2026-10-29/INDEPENDENT_R_VALIDATION.md), [key R-Python estimates](validation/2026-10-29/r_python_key_exposure_comparison.csv), and [factor-coded stratum sensitivity](validation/2026-10-29/factor_coded_strata_imputation_sensitivity.csv).
+The independent R cross-check completed on 29 October used the original 20 completed datasets generated with a 10-sweep burn-in. All 85 coefficient rows matched the Python results. This validates survey-model fitting and pooled inference conditional on those completed datasets; it is not an independent validation of the imputation process or the UPF exposure classification.
 
-**Important remaining limitations:** the current UPF exposure uses a manual broad WWEIA-category-level NOVA approximation. The standardized NHANES NOVA request email was sent on 29 October 2026; the proposal response is pending. The imputation sensitivity is targeted rather than fully design-aware, and formal MICE convergence diagnostics were not completed. The current repository source is not yet fully synchronized with the corrected local analysis. A copy of the NCI request sent on 29 October 2026 is in [docs/NCI_NOVA_data_request_email.md](docs/NCI_NOVA_data_request_email.md); the response is pending.
+Four independently initialized MICE chains have now been run with the primary PMM specification, 30 burn-in sweeps, and 150 monitored sweeps per chain. All six monitored scalar summaries had conventional and split R-hat values below 1.01. A separate production rerun using 30 rather than 10 burn-in sweeps and five updates between each saved imputation changed focal odds ratios by no more than 0.00077; the substantive conclusions were unchanged. See [the MICE diagnostic report](validation/2026-10-30/MICE_CONVERGENCE_DIAGNOSTICS.md), [R-hat summary](validation/2026-10-30/mice_multi_chain_rhat_summary.csv), and [longer-burn-in comparison](validation/2026-10-30/30_burnin_imputation_comparison.csv).
 
----
+The new 30-burn-in completed datasets have been refitted in Python but have **not yet been independently refitted in R**. Trace diagnostics assess six scalar summaries and do not prove every element of the joint imputation process has converged, establish correct model specification, or validate missing-at-random assumptions. The primary imputation specification still codes NHANES strata and PSU as numeric auxiliary predictors; factor-coded and stratum–PSU-cell alternatives are documented as targeted sensitivities.
 
-## Updated validation status (29 October 2026)
+The manual WWEIA-category-level NOVA mapping remains an approximation. The author reports sending the request email for standardized NHANES NOVA files to NCI on 29 October 2026; the proposal form/response is pending and the files have not been received. If supplied, the exposure and complete analysis must be rebuilt. The manuscript remains a working draft, not a submission-ready final.
 
-The corrected analysis has now been cross-checked in R using `survey::svyglm()` and `mitools::MIcombine()` on the same 20 completed datasets. All 85 coefficient rows matched one-to-one against the saved Python model tables, with very small numerical differences. Main UPF associations remain non-significant; the sex interaction remains exploratory. See [the validation report](validation/2026-10-29/INDEPENDENT_R_VALIDATION.md) and [key R-Python estimates](validation/2026-10-29/r_python_key_exposure_comparison.csv).
-
-**Important remaining limitations:** the current UPF exposure still uses a manual broad WWEIA-category-level NOVA approximation. The standardized NHANES NOVA files have not yet been requested/received. A factor-coded imputation sensitivity run was similar but used shortened update spacing and is preliminary. The current repository source therefore should not be represented as fully synchronized with a submission-ready analysis until these items are settled. The NCI request email draft is in [docs/NCI_NOVA_data_request_email.md](docs/NCI_NOVA_data_request_email.md).
+The open GitHub pull request is documentation/validation only. The corrected source-code pipeline has not been synchronized to the repository's main branch.
 
 ---
 
@@ -18,9 +16,9 @@ The corrected analysis has now been cross-checked in R using `survey::svyglm()` 
 
 Analysis code for a cross-sectional study of ultra-processed food (UPF) intake
 and blood pressure control among US adults with treated hypertension, using
-pooled 2015-2016 and 2017-2018 NHANES data. Manuscript submitted to *Nutrients*.
+pooled 2015-2016 and 2017-2018 NHANES data. Manuscript in preparation; the current exposure classification and results remain provisional pending the standardized NOVA data decision.
 
-**Main finding:** no significant association between UPF intake and blood
+**Current provisional finding:** no significant association between UPF intake and blood
 pressure control in this population, robust to two different blood pressure
 guideline definitions (2017 ACC/AHA and the earlier JNC-8 standard), adjustment
 for dietary sodium/potassium and antihypertensive medication intensity, and a
@@ -92,4 +90,4 @@ place of an odds ratio isn't going to be.
 
 ## Use of generative AI
 
-Generative AI (Claude, Anthropic) was used to assist with portions of the code development and repository documentation. All outputs were critically reviewed, verified, and, where necessary, modified by the author, who takes full responsibility for the repository and its contents
+Generative AI tools (Claude by Anthropic and ChatGPT by OpenAI) assisted with portions of the code development, validation workflow, and repository documentation. All outputs were critically reviewed, verified, and, where necessary, modified by the author, who takes full responsibility for the repository and its contents
