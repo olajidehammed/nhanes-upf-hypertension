@@ -1,10 +1,24 @@
+## Current validation status — 30 October 2026
+
+The independent R cross-check completed on 29 October used the original 20 completed datasets generated with a 10-sweep burn-in. All 85 coefficient rows matched the Python results. This validates survey-model fitting and pooled inference conditional on those completed datasets; it is not an independent validation of the imputation process or the UPF exposure classification.
+
+Four independently initialized MICE chains have now been run with the primary PMM specification, 30 burn-in sweeps, and 150 monitored sweeps per chain. All six monitored scalar summaries had conventional and split R-hat values below 1.01. A separate production rerun using 30 rather than 10 burn-in sweeps and five updates between each saved imputation changed focal odds ratios by no more than 0.00077; the substantive conclusions were unchanged. See [the MICE diagnostic report](validation/2026-10-30/MICE_CONVERGENCE_DIAGNOSTICS.md), [R-hat summary](validation/2026-10-30/mice_multi_chain_rhat_summary.csv), and [longer-burn-in comparison](validation/2026-10-30/30_burnin_imputation_comparison.csv).
+
+The new 30-burn-in completed datasets have been refitted in Python but have **not yet been independently refitted in R**. Trace diagnostics assess six scalar summaries and do not prove every element of the joint imputation process has converged, establish correct model specification, or validate missing-at-random assumptions. The primary imputation specification still codes NHANES strata and PSU as numeric auxiliary predictors; factor-coded and stratum–PSU-cell alternatives are documented as targeted sensitivities.
+
+The manual WWEIA-category-level NOVA mapping remains an approximation. The author reports sending the request email for standardized NHANES NOVA files to NCI on 29 October 2026; the proposal form/response is pending and the files have not been received. If supplied, the exposure and complete analysis must be rebuilt. The manuscript remains a working draft, not a submission-ready final.
+
+The open GitHub pull request is documentation/validation only. The corrected source-code pipeline has not been synchronized to the repository's main branch.
+
+---
+
 # Ultra-processed food intake and blood pressure control (NHANES 2015-2018)
 
 Analysis code for a cross-sectional study of ultra-processed food (UPF) intake
 and blood pressure control among US adults with treated hypertension, using
-pooled 2015-2016 and 2017-2018 NHANES data. Manuscript submitted to *Nutrients*.
+pooled 2015-2016 and 2017-2018 NHANES data. Manuscript in preparation; the current exposure classification and results remain provisional pending the standardized NOVA data decision.
 
-**Main finding:** no significant association between UPF intake and blood
+**Current provisional finding:** no significant association between UPF intake and blood
 pressure control in this population, robust to two different blood pressure
 guideline definitions (2017 ACC/AHA and the earlier JNC-8 standard), adjustment
 for dietary sodium/potassium and antihypertensive medication intensity, and a
@@ -76,4 +90,4 @@ place of an odds ratio isn't going to be.
 
 ## Use of generative AI
 
-Generative AI (Claude, Anthropic) was used to assist with portions of the code development and repository documentation. All outputs were critically reviewed, verified, and, where necessary, modified by the author, who takes full responsibility for the repository and its contents
+Generative AI tools (Claude by Anthropic and ChatGPT by OpenAI) assisted with portions of the code development, validation workflow, and repository documentation. All outputs were critically reviewed, verified, and, where necessary, modified by the author, who takes full responsibility for the repository and its contents
