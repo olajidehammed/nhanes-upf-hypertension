@@ -1,14 +1,16 @@
-## Current validation status — 30 October 2026
+## Current status — 24 November 2026
 
-The independent R cross-check completed on 29 October used the original 20 completed datasets generated with a 10-sweep burn-in. All 85 coefficient rows matched the Python results. This validates survey-model fitting and pooled inference conditional on those completed datasets; it is not an independent validation of the imputation process or the UPF exposure classification.
+Standardized NHANES NOVA respondent-level files were shared by Dr Euridice Martinez-Steele on 23 November 2026 and supplied by the author as a ZIP on 24 November. The archive contains data from multiple NHANES cycles; only the four 2015–2016 and 2017–2018 Day 1/Day 2 files are relevant to this project. The corresponding 2017–2018 SAS CONTENTS PDFs were also supplied.
 
-Four independently initialized MICE chains have now been run with the primary PMM specification, 30 burn-in sweeps, and 150 monitored sweeps per chain. All six monitored scalar summaries had conventional and split R-hat values below 1.01. A separate production rerun using 30 rather than 10 burn-in sweeps and five updates between each saved imputation changed focal odds ratios by no more than 0.00077; the substantive conclusions were unchanged. See [the MICE diagnostic report](validation/2026-10-30/MICE_CONVERGENCE_DIAGNOSTICS.md), [R-hat summary](validation/2026-10-30/mice_multi_chain_rhat_summary.csv), and [longer-burn-in comparison](validation/2026-10-30/30_burnin_imputation_comparison.csv).
+The four target CSVs each contain 180 variables and one row per respondent per recall day. For Day 1, the pooled 2015–2018 extraction contains 18,248 unique respondent records (9,544 in 2015–2016 and 8,704 in 2017–2018). No duplicate SEQN values were found within either cycle or across the pooled Day 1 files. NOVA group energy shares sum to 1 for positive-energy records; the supplied NOVA group-4 energy proportion agrees with the ratio calculated from group-level kcal to numerical precision. See [the standardized NOVA receipt and QA report](validation/2026-11-24/STANDARDIZED_NOVA_FILES_RECEIVED_QA.md).
 
-The new 30-burn-in completed datasets have been refitted in Python but have **not yet been independently refitted in R**. Trace diagnostics assess six scalar summaries and do not prove every element of the joint imputation process has converged, establish correct model specification, or validate missing-at-random assumptions. The primary imputation specification still codes NHANES strata and PSU as numeric auxiliary predictors; factor-coded and stratum–PSU-cell alternatives are documented as targeted sensitivities.
+The primary Day 1 exposure is now taken directly from the supplied `DR1T_Propcal_Novag4` variable and expressed as a percentage (0–100) in the merge-ready file. These are already NOVA-classified respondent-level group/subgroup summaries, not a food-code lookup table. The prior manual WWEIA-category-level classification is superseded for the final analysis.
 
-The manual WWEIA-category-level NOVA mapping remains an approximation. The author reports sending the request email for standardized NHANES NOVA files to NCI on 29 October 2026; the proposal form/response is pending and the files have not been received. If supplied, the exposure and complete analysis must be rebuilt. The manuscript remains a working draft, not a submission-ready final.
+**The new NOVA file has not yet been merged with the project's analytic NHANES dataset, and none of the regression estimates or manuscript results have yet been rerun using it.** The previous estimates based on the broad WWEIA approximation must therefore remain provisional and must not be presented as the standardized-NOVA results. The next checks are to merge on SEQN, compare summed NOVA-group kcal with official NHANES `DR1TKCAL`, verify dietary reliability and energy filters, then rebuild the analytic sample, weighted quartiles, imputed datasets, models, tables, figures, and manuscript text.
 
-The open GitHub pull request is documentation/validation only. The corrected source-code pipeline has not been synchronized to the repository's main branch.
+The standardized respondent-level files and merge-ready person-level exposure CSV are kept outside this public repository because they were shared directly for the research request. This PR adds documentation/aggregate QA only; it does not upload the individual-level NOVA data or synchronize the complete analysis pipeline.
+
+The prior 30 October imputation trace diagnostics and independent R model cross-check remain conditional on the earlier analysis/exposure and completed datasets. They will need to be checked or rerun as appropriate after the standardized-NOVA analytic sample and models are rebuilt.
 
 ---
 
@@ -16,9 +18,9 @@ The open GitHub pull request is documentation/validation only. The corrected sou
 
 Analysis code for a cross-sectional study of ultra-processed food (UPF) intake
 and blood pressure control among US adults with treated hypertension, using
-pooled 2015-2016 and 2017-2018 NHANES data. Manuscript in preparation; the current exposure classification and results remain provisional pending the standardized NOVA data decision.
+pooled 2015-2016 and 2017-2018 NHANES data. Manuscript in preparation; the standardized NOVA files have been received, but the new exposure has not yet been merged into the analytic sample or used to refit the models.
 
-**Current provisional finding:** no significant association between UPF intake and blood
+**Pre-standardized-NOVA finding (provisional; not the final result):** no significant association between UPF intake and blood
 pressure control in this population, robust to two different blood pressure
 guideline definitions (2017 ACC/AHA and the earlier JNC-8 standard), adjustment
 for dietary sodium/potassium and antihypertensive medication intensity, and a
