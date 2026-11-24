@@ -1,16 +1,18 @@
 ## Current status — 24 November 2026
 
-Standardized NHANES NOVA respondent-level files were shared by Dr Euridice Martinez-Steele on 23 November 2026 and supplied by the author as a ZIP on 24 November. The archive contains data from multiple NHANES cycles; only the four 2015–2016 and 2017–2018 Day 1/Day 2 files are relevant to this project. The corresponding 2017–2018 SAS CONTENTS PDFs were also supplied.
+Dr Euridice Martinez-Steele shared the standardized NHANES NOVA files on 23 November 2026. The author supplied the ZIP on 24 November; the four relevant 2015–2016 and 2017–2018 Day 1/Day 2 files and two codebook PDFs were extracted and checked.
 
-The four target CSVs each contain 180 variables and one row per respondent per recall day. For Day 1, the pooled 2015–2018 extraction contains 18,248 unique respondent records (9,544 in 2015–2016 and 8,704 in 2017–2018). No duplicate SEQN values were found within either cycle or across the pooled Day 1 files. NOVA group energy shares sum to 1 for positive-energy records; the supplied NOVA group-4 energy proportion agrees with the ratio calculated from group-level kcal to numerical precision. See [the standardized NOVA receipt and QA report](validation/2026-11-24/STANDARDIZED_NOVA_FILES_RECEIVED_QA.md).
+The standardized Day 1 NOVA group-4 energy proportion (`DR1T_Propcal_Novag4`) was merged by SEQN into the previously constructed 2,683-person treated-hypertension analytic cohort. All 2,683 participants matched; cycle labels agreed; there were no duplicate SEQN values; and the sum of NOVA group 1–4 kcal matched the prior `total_kcal` (sourced from NHANES `DR1TKCAL`) exactly in all 2,683 records.
 
-The primary Day 1 exposure is now taken directly from the supplied `DR1T_Propcal_Novag4` variable and expressed as a percentage (0–100) in the merge-ready file. These are already NOVA-classified respondent-level group/subgroup summaries, not a food-code lookup table. The prior manual WWEIA-category-level classification is superseded for the final analysis.
+The exposure changed materially relative to the previous broad WWEIA-category mapping: the survey-weighted mean UPF share rose from 48.14% to 55.45%, participant-level Pearson correlation was 0.707, and 46.8% of participants changed exposure quartile. Standardized-NOVA weighted quartile cut-points were 40.34%, 55.69%, and 71.01%.
 
-**The new NOVA file has not yet been merged with the project's analytic NHANES dataset, and none of the regression estimates or manuscript results have yet been rerun using it.** The previous estimates based on the broad WWEIA approximation must therefore remain provisional and must not be presented as the standardized-NOVA results. The next checks are to merge on SEQN, compare summed NOVA-group kcal with official NHANES `DR1TKCAL`, verify dietary reliability and energy filters, then rebuild the analytic sample, weighted quartiles, imputed datasets, models, tables, figures, and manuscript text.
+**Initial standardized-NOVA Python results:** adjusted Q4 vs Q1 OR 1.002 (95% CI 0.676–1.486; p=0.991); continuous UPF per 10 percentage points OR 1.026 (0.952–1.107; p=0.486); historical <140/90 Q4 vs Q1 OR 0.904 (0.576–1.420; p=0.652). The earlier nominal UPF-by-sex interaction did not persist (interaction ratio OR 0.904; 0.776–1.053; p=0.186). These results are provisional pending independent R validation and fresh convergence diagnostics for the new exposure. See [the standardized-NOVA results and audit report](validation/2026-11-24/STANDARDIZED_NOVA_REANALYSIS_RESULTS.md).
 
-The standardized respondent-level files and merge-ready person-level exposure CSV are kept outside this public repository because they were shared directly for the research request. This PR adds documentation/aggregate QA only; it does not upload the individual-level NOVA data or synchronize the complete analysis pipeline.
+The recovered earlier validation ZIP contained the 2,683-person analysis-ready cohort. Its README refers to a separate 19-file `NHANES_data_files.zip`, which was not available in the recovered files. This reanalysis therefore retains the prior selected cohort and verifies the participant merge and energy denominator; it does not independently recreate the original raw XPT/USDA exclusion flow.
 
-The prior 30 October imputation trace diagnostics and independent R model cross-check remain conditional on the earlier analysis/exposure and completed datasets. They will need to be checked or rerun as appropriate after the standardized-NOVA analytic sample and models are rebuilt.
+The NOVA source files and participant-level merged datasets are intentionally not committed to this public repository. This PR contains only documentation and aggregate QA/results. The full source and analysis package remains with the author.
+
+**Remaining checks:** independent R `survey::svyglm()`/`mitools::MIcombine()` validation of the new 20 imputed datasets; new-exposure multi-chain MICE trace/R-hat diagnostics; and full revision of the abstract, methods, results, discussion, tables and figures. The prior R cross-check and old-exposure MICE traces do not validate the new standardized-NOVA models.
 
 ---
 
@@ -18,9 +20,9 @@ The prior 30 October imputation trace diagnostics and independent R model cross-
 
 Analysis code for a cross-sectional study of ultra-processed food (UPF) intake
 and blood pressure control among US adults with treated hypertension, using
-pooled 2015-2016 and 2017-2018 NHANES data. Manuscript in preparation; the standardized NOVA files have been received, but the new exposure has not yet been merged into the analytic sample or used to refit the models.
+pooled 2015-2016 and 2017-2018 NHANES data. Manuscript in preparation; standardized NOVA models have been refitted in Python, but independent R validation and new-exposure imputation diagnostics remain outstanding.
 
-**Pre-standardized-NOVA finding (provisional; not the final result):** no significant association between UPF intake and blood
+**Initial standardized-NOVA finding (provisional):** no significant association between UPF intake and blood
 pressure control in this population, robust to two different blood pressure
 guideline definitions (2017 ACC/AHA and the earlier JNC-8 standard), adjustment
 for dietary sodium/potassium and antihypertensive medication intensity, and a
