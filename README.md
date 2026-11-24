@@ -22,13 +22,10 @@ Analysis code for a cross-sectional study of ultra-processed food (UPF) intake
 and blood pressure control among US adults with treated hypertension, using
 pooled 2015-2016 and 2017-2018 NHANES data. Manuscript in preparation; standardized NOVA models have been refitted in Python, but independent R validation and new-exposure imputation diagnostics remain outstanding.
 
-**Initial standardized-NOVA finding (provisional):** no significant association between UPF intake and blood
-pressure control in this population, robust to two different blood pressure
-guideline definitions (2017 ACC/AHA and the earlier JNC-8 standard), adjustment
-for dietary sodium/potassium and antihypertensive medication intensity, and a
-sensitivity check for BMI as a potential mediator. Sociodemographic factors
-(race, income, education) showed more consistent associations with blood
-pressure control than diet in this sample.
+**Initial standardized-NOVA finding (provisional):** the adjusted Q4-versus-Q1 OR was 1.002 (95% CI 0.676–1.486; p=0.991); continuous UPF per 10 percentage points was OR 1.026 (95% CI 0.952–1.107; p=0.486). The historical <140/90 sensitivity was also non-significant (OR 0.904; 95% CI 0.576–1.420; p=0.652). The prior nominal UPF-by-sex interaction did not persist (interaction ratio OR 0.904; 95% CI 0.776–1.053; p=0.186). These are initial Python results pending independent R validation and new-exposure imputation diagnostics.
+
+## Current analysis-code status
+The analysis scripts currently on the main branch still contain the earlier WWEIA-category approximation. The standardized-NOVA reanalysis scripts and completed datasets are retained in the private reanalysis package, not yet synchronized to the public source tree. Do not treat the existing main-branch script as reproducing the new standardized-NOVA estimates.
 
 ## What's here
 All files sit in the repo root (not in a subfolder) - run everything from there.
