@@ -1,0 +1,5 @@
+variable,missing_n,mean_of_imputation_means_first10,mean_of_imputation_means_last10,min_imputation_mean,max_imputation_mean,min_imputed_value_across_sets,max_imputed_value_across_sets
+educ,8,3.137500,3.100000,2.500000,4.000000,1.000000,5.000000
+INDFMPIR,318,2.397654,2.344513,2.230692,2.506258,0.020000,5.000000
+BMXBMI,35,30.599429,31.055429,28.048571,33.180000,16.600000,61.700000
+smoke_ord,3,0.366667,0.533333,0.000000,1.000000,0.000000,2.000000
